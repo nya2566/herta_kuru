@@ -1,6 +1,6 @@
 ﻿## Warning
-The counter has paused, awaiting additional remediation measures, as a result of the excessive traffic and malicious flood of requests.
-
+~~The counter has paused, awaiting additional remediation measures, as a result of the excessive traffic and malicious flood of requests.~~
+try add a counter, written by go. test.
 <div align="center"><img src="static/img/hertaa_github.gif"></div>
 
 <div align="center"><p>The website for Herta, the cutest genius Honkai: Star Rail character out there!</p>
@@ -9,7 +9,7 @@ The counter has paused, awaiting additional remediation measures, as a result of
   [![Chat on Discord](https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord)](https://discord.gg/yzkEz6xxdM)
 
 # Herta Kuru | 黑塔转圈圈 | ヘルタクルへ
-[Home Page | 主页 | ホーム ページ](https://duiqt.github.io/herta_kuru)
+(Original)[Home Page | 主页 | ホーム ページ](https://duiqt.github.io/herta_kuru)
 
 Herta GIF and art made by | 黑塔 GIF 绘画者 : [@Seseren_kr](https://twitter.com/Seseren_kr) 
 
