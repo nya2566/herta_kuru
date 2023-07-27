@@ -306,12 +306,22 @@ const progress = [0, 1];
     // get global counter element and initialize its respective counts
     const localCounter = document.querySelector('#local-counter');
     let localCount = localStorage.getItem('count-v2') || 0;
+    // localCount = cnt();
+    cnt().then(data => {
+        netCount = data['cnt'];
+        localCount = netCount;
+        localStorage.setItem('count-v2', localCount);
+        // display counter when get the count from network
+        localCounter.textContent = localCount.toLocaleString('en-US');
+    });
 
-    // display counter
-    localCounter.textContent = localCount.toLocaleString('en-US');
+    // localCounter.textContent = localCount.toLocaleString('en-US');
 
     // initialize timer variable and add event listener to the counter button element
     const counterButton = document.querySelector('#counter-button');
+
+    //count before refresh
+    var countNow = 0;
 
     // Preload
 
@@ -370,6 +380,7 @@ const progress = [0, 1];
 
     function addBtnEvent() {
         counterButton.addEventListener('click', (e) => {
+            countNow++;
             localCount++;
             localCounter.textContent = localCount.toLocaleString('en-US');
             localStorage.setItem('count-v2', localCount);
@@ -390,6 +401,7 @@ const progress = [0, 1];
                 refreshDynamicTexts();
                 addBtnEvent();
                 document.getElementById('loading').remove()
+                localStorage.setItem('count-v2', localCount);
             });
     }
 
@@ -483,6 +495,7 @@ const progress = [0, 1];
 
     // This function creates ripples on a button click and removes it after 300ms.
     function triggerRipple(e) {
+        cnt('POST')
         let ripple = document.createElement("span");
 
         ripple.classList.add("ripple");
@@ -669,6 +682,12 @@ const progress = [0, 1];
                 </label>
             </td>
         </tr>
+        <div class="mdui-divider"></div>
+        <tr>
+            <td><button class="mdui-btn mdui-color-theme-accent mdui-ripple" id="refresh-count">
+            <i class="mdui-icon material-icons">refresh</i>reset localcount
+            </button></td>
+        </tr>
     </table>
 </div>`,
             buttons: [
@@ -682,6 +701,7 @@ const progress = [0, 1];
                 $("#language-selector").val(current_language);
                 $("#random-speed-type").val(current_random_type);
                 $("#speed-progress-bar").val(current_speed);
+                $("#refresh-count").on("click", () => resetCount());
 
                 if (current_random_type == "on") {
                     $("#speed-progress-bar").prop("disabled", true);
@@ -724,4 +744,46 @@ const progress = [0, 1];
     }
 
     $("#show-options-opt").on("click", () => showOptions())
+
+    function resetCount(){
+        console.log("reset")
+        localCount = 0;
+    }
+
+    async function cnt(method='GET') {
+        url = "https://herta.kururin.link"+"/api/cnt";
+        var requestOptions = {
+            method: method,
+            redirect: 'follow'
+        };
+        const response = await fetch(url, requestOptions);
+        return await response.json();
+    }
+
+    function updateCounter() {
+        cnt().then(data => {
+            netCount = data['cnt'];
+            if(localCount < netCount) {
+                if(netCount-localCount<180){
+                    const counter = createCounter(localCount, netCount);
+                    requestAnimationFrame(counter);
+                }
+                localCount = netCount;
+            }
+            // display counter when get the count from network
+            localCounter.textContent = localCount.toLocaleString('en-US');
+        });
+    }
+
+    function createCounter(start, end) {
+        let current = start;
+        return function fn() {
+            current++;
+            document.getElementById('local-counter').innerHTML = current;
+            if(current < end && end-current<180) {
+                requestAnimationFrame(fn);
+            }
+        }
+    }
+    setInterval(updateCounter, 5000);
 })(); 
