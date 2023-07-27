@@ -48,7 +48,7 @@ var configData *conf
 // ******
 func loadConfig() error {
 	config := new(conf)
-	yamlFile, err := os.ReadFile("/data/config.yaml")
+	yamlFile, err := os.ReadFile("config.yaml")
 	if err != nil {
 		log.Printf("读取配置文件失败 #%v", err)
 	}
