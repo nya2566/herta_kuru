@@ -1,6 +1,7 @@
 ﻿## Warning
 ~~The counter has paused, awaiting additional remediation measures, as a result of the excessive traffic and malicious flood of requests.~~
-try add a counter, written by go. test.
+
+Try add a counter, written by go. Very simple. Just for test.
 <div align="center"><img src="static/img/hertaa_github.gif"></div>
 
 <div align="center"><p>The website for Herta, the cutest genius Honkai: Star Rail character out there!</p>
