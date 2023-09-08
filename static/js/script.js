@@ -315,7 +315,7 @@ const progress = [0, 1];
         localCounter.textContent = localCount.toLocaleString('en-US');
     });*/ //2023-9-9
 
-    // localCounter.textContent = localCount.toLocaleString('en-US');
+    localCounter.textContent = localCount.toLocaleString('en-US');
 
     // initialize timer variable and add event listener to the counter button element
     const counterButton = document.querySelector('#counter-button');
