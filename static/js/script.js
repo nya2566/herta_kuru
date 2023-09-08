@@ -307,13 +307,13 @@ const progress = [0, 1];
     const localCounter = document.querySelector('#local-counter');
     let localCount = localStorage.getItem('count-v2') || 0;
     // localCount = cnt();
-    cnt().then(data => {
+    /*cnt().then(data => {
         netCount = data['cnt'];
         localCount = netCount;
         localStorage.setItem('count-v2', localCount);
         // display counter when get the count from network
         localCounter.textContent = localCount.toLocaleString('en-US');
-    });
+    });*/ //2023-9-9
 
     // localCounter.textContent = localCount.toLocaleString('en-US');
 
@@ -495,7 +495,7 @@ const progress = [0, 1];
 
     // This function creates ripples on a button click and removes it after 300ms.
     function triggerRipple(e) {
-        cnt('POST')
+        // cnt('POST') //2023-9-9
         let ripple = document.createElement("span");
 
         ripple.classList.add("ripple");
@@ -749,7 +749,7 @@ const progress = [0, 1];
         console.log("reset")
         localCount = 0;
     }
-
+/*
     async function cnt(method='GET') {
         url = "https://herta.kururin.link"+"/api/cnt";
         var requestOptions = {
@@ -785,5 +785,6 @@ const progress = [0, 1];
             }
         }
     }
-    setInterval(updateCounter, 5000);
+    // setInterval(updateCounter, 5000); //20230909
+    */ //20230909
 })(); 
